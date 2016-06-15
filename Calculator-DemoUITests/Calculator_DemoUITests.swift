@@ -1,3 +1,4 @@
+
 //
 //  Calculator_DemoUITests.swift
 //  Calculator-DemoUITests
@@ -28,9 +29,34 @@ class Calculator_DemoUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSum() {
+        XCUIDevice.sharedDevice().orientation = .Portrait
+        
+        let app = XCUIApplication()
+        app.buttons["5"].tap()
+        app.buttons["+"].tap()
+        app.buttons["9"].tap()
+        app.buttons["*"].tap()
+        app.buttons["2"].tap()
+        app.buttons["="].tap()
+        let label = app.staticTexts.elementMatchingType(.Any, identifier: "Result").label
+        XCTAssert(label == "28")
+        
+    }
+    
+    func testClearButton() {
+        XCUIDevice.sharedDevice().orientation = .Portrait
+        
+        let app = XCUIApplication()
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        app.buttons["2"].tap()
+        app.buttons["C"].tap()
+        app.buttons["5"].tap()
+        app.buttons["="].tap()
+        let label = app.staticTexts.elementMatchingType(.Any, identifier: "Result").label
+        XCTAssert(label == "6")
+        
     }
     
 }

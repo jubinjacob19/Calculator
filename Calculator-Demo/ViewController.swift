@@ -10,14 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    lazy var calculator : CalculatorView = {
+        return CalculatorView()
+    } ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        addSubviews()
+        view.backgroundColor = UIColor.brownColor()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func addSubviews() {
+        view.addSubview(calculator)
+        view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .CenterX, relatedBy: .Equal, toItem: calculator, attribute: .CenterX, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Top, relatedBy: .Equal, toItem: calculator, attribute: .Top, multiplier: 1, constant: 0))
+    
+        
     }
 
 
