@@ -151,14 +151,16 @@ class CalculatorView: UIView, NumberButtonDelegate, OperatorButtonDelegate,Clear
     }
     
     func selected(kOperator: Operator) {
-        if rhs == nil {
-            oprtr = kOperator
-        } else {
-            lhs = oprtr?.evaluate(lhs!, rhs: rhs!)
-            oprtr = kOperator
-            let text = lhs?.isInteger() == true ? "\(Int(lhs!))" : "\(lhs!)"
-            resultLabel.text = text
-            rhs = nil
+        if(lhs != nil) { // proceed if lhs is non nil.
+            if rhs == nil {
+                oprtr = kOperator
+            } else {
+                lhs = oprtr?.evaluate(lhs!, rhs: rhs!)
+                oprtr = kOperator
+                let text = lhs?.isInteger() == true ? "\(Int(lhs!))" : "\(lhs!)"
+                resultLabel.text = text
+                rhs = nil
+            }
         }
     }
     
