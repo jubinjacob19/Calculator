@@ -9,7 +9,7 @@
 import Foundation
 
 struct Divide : Operator {
-    func evaluate(lhs: Float, rhs: Float) -> Float {
+    func evaluate(_ lhs: Float, rhs: Float) -> Float {
         if rhs != 0 {
             return Float(lhs / rhs)
         } else {

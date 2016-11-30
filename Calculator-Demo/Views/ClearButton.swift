@@ -17,13 +17,13 @@ class ClearButton: BaseButton {
     var delegate : ClearButtonDelegate?
     
     convenience init(delegate:ClearButtonDelegate) {
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
         self.delegate = delegate
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setTitle("C", forState: .Normal)
+        self.setTitle("C", for: UIControlState())
     }
     
     required init?(coder aDecoder: NSCoder) {

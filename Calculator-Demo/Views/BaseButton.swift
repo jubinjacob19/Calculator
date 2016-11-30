@@ -10,12 +10,12 @@ import UIKit
 
 class BaseButton: UIButton {
 
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if highlighted {
-                backgroundColor = UIColor.grayColor()
+            if isHighlighted {
+                backgroundColor = UIColor.gray
             } else {
-                backgroundColor = UIColor.whiteColor()
+                backgroundColor = UIColor.white
             }
         }
     }
@@ -23,23 +23,23 @@ class BaseButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         layer.cornerRadius = 5.0
         clipsToBounds = true
-        setTitleColor(UIColor.blackColor(), forState: .Normal)
-        setTitleColor(UIColor.blueColor(), forState: .Highlighted)
-        addTarget(self, action: #selector(self.selectedButton(_:)), forControlEvents: .TouchUpInside)
+        setTitleColor(UIColor.black, for: UIControlState())
+        setTitleColor(UIColor.blue, for: .highlighted)
+        addTarget(self, action: #selector(self.selectedButton(_:)), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(44, 44)
+    override var intrinsicContentSize : CGSize {
+        return CGSize(width: 44, height: 44)
     }
     
-    @objc @IBAction func selectedButton(sender:BaseButton) {
+    @objc @IBAction func selectedButton(_ sender:BaseButton) {
         clicked()
     }
     

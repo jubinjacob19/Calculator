@@ -34,8 +34,8 @@ class CalculatorView: UIView, NumberButtonDelegate, OperatorButtonDelegate,Clear
     lazy var oneToNineContainer : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 44 * 3 + 2*self.padding))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 44 * 3 + 2*self.padding))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44 * 3 + 2*self.padding))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44 * 3 + 2*self.padding))
         return view
     } ()
     
@@ -61,7 +61,7 @@ class CalculatorView: UIView, NumberButtonDelegate, OperatorButtonDelegate,Clear
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.text = "0"
-        field.backgroundColor = UIColor.whiteColor()
+        field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5.0
         field.clipsToBounds = true
         field.accessibilityIdentifier = "Result"
@@ -89,27 +89,27 @@ class CalculatorView: UIView, NumberButtonDelegate, OperatorButtonDelegate,Clear
         addSubview(resultLabel)
         containerView.addSubview(oneToNineContainer)
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[cntnr]|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[cntnr]|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
         let width = 44 * 4 + padding * 3
         let metrics = ["width":width]
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[field(==width)]", options: NSLayoutFormatOptions(rawValue:0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[field(==44)]-(20)-[cntnr]|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[one]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[one]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[field(==width)]", options: NSLayoutFormatOptions(rawValue:0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(20)-[field(==44)]-(20)-[cntnr]|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[one]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[one]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: views))
         
-        for (index, button) in numberButtons.enumerate() {
+        for (index, button) in numberButtons.enumerated() {
             let xPos : CGFloat = CGFloat(index%3)
             let yPos : CGFloat = CGFloat(abs( (index/3) - 2))
             oneToNineContainer.addSubview(button)
-            oneToNineContainer.addConstraint(NSLayoutConstraint(item: button, attribute: .Leading, relatedBy: .Equal, toItem: oneToNineContainer, attribute: .Leading, multiplier: 1, constant: (44 * xPos) + xPos*padding))
-            oneToNineContainer.addConstraint(NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: oneToNineContainer, attribute: .Top, multiplier: 1, constant: (44 * yPos) + yPos*padding))
+            oneToNineContainer.addConstraint(NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: oneToNineContainer, attribute: .leading, multiplier: 1, constant: (44 * xPos) + xPos*padding))
+            oneToNineContainer.addConstraint(NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: oneToNineContainer, attribute: .top, multiplier: 1, constant: (44 * yPos) + yPos*padding))
         }
         
-        for (index,button) in operatorButtons.enumerate() {
+        for (index,button) in operatorButtons.enumerated() {
             let yPos = CGFloat(index)
             containerView.addSubview(button)
-            containerView.addConstraint(NSLayoutConstraint(item: button, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1, constant: (44 * 3) + 3*padding))
-            containerView.addConstraint(NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1, constant: (44 * yPos) + yPos*padding))
+            containerView.addConstraint(NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: (44 * 3) + 3*padding))
+            containerView.addConstraint(NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: (44 * yPos) + yPos*padding))
             
         }
         
@@ -117,18 +117,18 @@ class CalculatorView: UIView, NumberButtonDelegate, OperatorButtonDelegate,Clear
         addSubview(clear)
         addSubview(equalsButton)
         let btnViews = ["zero":zero,"clr":clear,"one":oneToNineContainer,"equ":equalsButton]
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[zero]-(20)-[clr]-(20)-[equ]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[one]-(20)-[zero]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[one]-(20)-[clr]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[one]-(20)-[equ]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[zero]-(20)-[clr]-(20)-[equ]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[one]-(20)-[zero]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[one]-(20)-[clr]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[one]-(20)-[equ]", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: btnViews))
         
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(300, 500)
+    override var intrinsicContentSize : CGSize {
+        return CGSize(width: 300, height: 500)
     }
     
-    func selected(no: Float) {
+    func selected(_ no: Float) {
         if oprtr == nil {
             if lhs == nil  {
                 lhs = no
@@ -150,7 +150,7 @@ class CalculatorView: UIView, NumberButtonDelegate, OperatorButtonDelegate,Clear
     
     }
     
-    func selected(kOperator: Operator) {
+    func selected(_ kOperator: Operator) {
         if(lhs != nil) { // proceed if lhs is non nil.
             if rhs == nil {
                 oprtr = kOperator

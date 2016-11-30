@@ -30,7 +30,7 @@ class Calculator_DemoUITests: XCTestCase {
     }
     
     func testSum() {
-        XCUIDevice.sharedDevice().orientation = .Portrait
+        XCUIDevice.shared().orientation = .portrait
         
         let app = XCUIApplication()
         app.buttons["5"].tap()
@@ -39,13 +39,13 @@ class Calculator_DemoUITests: XCTestCase {
         app.buttons["*"].tap()
         app.buttons["2"].tap()
         app.buttons["="].tap()
-        let label = app.staticTexts.elementMatchingType(.Any, identifier: "Result").label
+        let label = app.staticTexts.element(matching: .any, identifier: "Result").label
         XCTAssert(label == "28")
         
     }
     
     func testClearButton() {
-        XCUIDevice.sharedDevice().orientation = .Portrait
+        XCUIDevice.shared().orientation = .portrait
         
         let app = XCUIApplication()
         app.buttons["1"].tap()
@@ -54,7 +54,7 @@ class Calculator_DemoUITests: XCTestCase {
         app.buttons["C"].tap()
         app.buttons["5"].tap()
         app.buttons["="].tap()
-        let label = app.staticTexts.elementMatchingType(.Any, identifier: "Result").label
+        let label = app.staticTexts.element(matching: .any, identifier: "Result").label
         XCTAssert(label == "6")
         
     }

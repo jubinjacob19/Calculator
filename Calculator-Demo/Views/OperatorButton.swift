@@ -9,26 +9,26 @@
 import UIKit
 
 protocol OperatorButtonDelegate {
-    func selected(kOperator:Operator)
+    func selected(_ kOperator:Operator)
 }
 
 class OperatorButton: BaseButton {
     
-    private var delegate : OperatorButtonDelegate?
+    fileprivate var delegate : OperatorButtonDelegate?
     
-    private var optr : Operator? {
+    fileprivate var optr : Operator? {
         didSet {
-            self.setTitle(optr?.stringRepresentation, forState: .Normal)
+            self.setTitle(optr?.stringRepresentation, for: UIControlState())
         }
     }
     
     convenience init(koperator:Operator, delegate:OperatorButtonDelegate) {
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
         setOperator(koperator)
         self.delegate = delegate
     }
     
-    func setOperator(koperator:Operator) {
+    func setOperator(_ koperator:Operator) {
         optr = koperator
     }
     

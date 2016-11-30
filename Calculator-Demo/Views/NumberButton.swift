@@ -9,26 +9,26 @@
 import UIKit
 
 protocol NumberButtonDelegate {
-    func selected(no:Float)
+    func selected(_ no:Float)
 }
 
 class NumberButton: BaseButton {
     
-    private var number : Int? {
+    fileprivate var number : Int? {
         didSet {
-            self.setTitle("\(number!)", forState: .Normal)
+            self.setTitle("\(number!)", for: UIControlState())
         }
     }
     
-    private var delegate : NumberButtonDelegate?
+    fileprivate var delegate : NumberButtonDelegate?
     
     convenience init(no:Int, delegate:NumberButtonDelegate) {
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
         setNumber(no)
         self.delegate = delegate
     }
     
-    func setNumber(no:Int) {
+    func setNumber(_ no:Int) {
         number = no
     }
     

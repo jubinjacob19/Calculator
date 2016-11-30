@@ -17,13 +17,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
-        view.backgroundColor = UIColor.brownColor()
+        view.backgroundColor = UIColor.brown
     }
     
     func addSubviews() {
         view.addSubview(calculator)
-        view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .CenterX, relatedBy: .Equal, toItem: calculator, attribute: .CenterX, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Top, relatedBy: .Equal, toItem: calculator, attribute: .Top, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .centerX, relatedBy: .equal, toItem: calculator, attribute: .centerX, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .top, relatedBy: .equal, toItem: calculator, attribute: .top, multiplier: 1, constant: 0))
     
         
     }

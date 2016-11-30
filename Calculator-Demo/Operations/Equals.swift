@@ -9,7 +9,7 @@
 import Foundation
 
 struct Equals : Operator {
-    func evaluate(lhs: Float, rhs: Float) -> Float {
+    func evaluate(_ lhs: Float, rhs: Float) -> Float {
         return Float(rhs)
     }
     var stringRepresentation = "="
